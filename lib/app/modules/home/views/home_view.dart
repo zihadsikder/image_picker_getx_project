@@ -1,9 +1,6 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -22,13 +19,13 @@ class HomeView extends GetView<HomeController> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'select an image',
+              'Select a photo',
               style: TextStyle(fontSize: 20),
             ),
-            SizedBox(height: 48,),
             Obx(
-              () =>GestureDetector(
-                onTap: controller.pickImage,
+              () => GestureDetector(
+                onTap: controller.pickImageFromGallery,
+                // Default to gallery
                 child: Center(
                   child: Container(
                     height: 150,
@@ -36,22 +33,32 @@ class HomeView extends GetView<HomeController> {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.white,
-                      border: Border.all(
-                        width: 15,
-                        color: Colors.grey.shade100
-                      )
+                      border: Border.all(width: 15, color: Colors.grey),
                     ),
-                    child : ClipOval(
-                        child: controller.imagePath.value.isEmpty ? Icon(Icons.person,size: 100)
-                            :
-                        Image.file(File(controller.imagePath.value),fit: BoxFit.cover,)
-                    )
-
-                   ),
+                    child: ClipOval(
+                      child: controller.imagePath.value.isEmpty
+                          ? Icon(Icons.person, size: 100)
+                          : Image.file(File(controller.imagePath.value)),
+                    ),
                   ),
                 ),
+              ),
             ),
-
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: controller.pickImageFromGallery,
+                  child: const Text('Pick from Gallery'),
+                ),
+                SizedBox(width: 10),
+                ElevatedButton(
+                  onPressed: controller.pickImageFromCamera,
+                  child: const Text('Take a Photo'),
+                ),
+              ],
+            ),
           ],
         ),
       ),
