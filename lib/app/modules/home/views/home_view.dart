@@ -22,9 +22,10 @@ class HomeView extends GetView<HomeController> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'HomeView is working',
+              'select an image',
               style: TextStyle(fontSize: 20),
             ),
+            SizedBox(height: 48,),
             Obx(
               () =>GestureDetector(
                 onTap: controller.pickImage,
@@ -34,16 +35,16 @@ class HomeView extends GetView<HomeController> {
                     width: 150,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.red,
+                      color: Colors.white,
                       border: Border.all(
                         width: 15,
-                        color: Colors.grey
+                        color: Colors.grey.shade100
                       )
                     ),
                     child : ClipOval(
                         child: controller.imagePath.value.isEmpty ? Icon(Icons.person,size: 100)
                             :
-                        Image.file(File(controller.imagePath.value))
+                        Image.file(File(controller.imagePath.value),fit: BoxFit.cover,)
                     )
 
                    ),
