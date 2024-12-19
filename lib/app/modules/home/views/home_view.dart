@@ -33,7 +33,7 @@ class HomeView extends GetView<HomeController> {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: Colors.white,
-                      border: Border.all(width: 15, color: Colors.grey),
+                      border: Border.all(width: 15, color: Colors.grey.shade100),
                     ),
                     child: ClipOval(
                       child: controller.imagePath.value.isEmpty
